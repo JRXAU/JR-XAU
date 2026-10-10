@@ -1,18 +1,12 @@
-JR~XAU Android APK build source
+JR~XAU — Android installable web app package
 
-This project packages the existing JR~XAU HTML dashboard inside a simple Android WebView app.
-It is NOT an APK yet. The APK is built by the GitHub Actions workflow at .github/workflows/build-apk.yml.
+WHAT'S INCLUDED
+- index.html: current signal dashboard, renamed JR~XAU
+- manifest.webmanifest: app name, icon and standalone display settings
+- sw.js: basic app-shell caching for repeat loads
+- icons/: Android/PWA icons
 
-BUILD FROM A PHONE (requires a GitHub account):
-1. Create a new GitHub repository named JR-XAU-Android.
-2. Upload the contents of this ZIP to the repository root (not the ZIP itself).
-3. Open the repository's Actions tab.
-4. Select "Build JR~XAU APK" and tap "Run workflow".
-5. When complete, open the workflow run and download the "JR-XAU-debug-apk" artifact.
-6. Extract the downloaded artifact ZIP; it contains app-debug.apk.
-7. Open the APK on Android and allow Chrome/Files to install unknown apps if Android asks.
+IMPORTANT
+This is an installable PWA package, not a signed Android APK. To install it as an app, these files must be hosted on an HTTPS website (or localhost). Opening index.html directly from Downloads will not enable PWA installation or service-worker caching.
 
-LIMITATIONS:
-- This creates a debug APK for personal testing, not a Play Store release.
-- The bundled dashboard's data-feed connection must still be tested on the phone.
-- This does not connect to HFM MT5 or verify broker trade outcomes, and does not create a 24/7 hosted backend.
+The dashboard still depends on its external data provider and does not run as a hosted 24/7 service by itself. Its feed is not verified as identical to HFM quotes, it does not connect to HFM MT5, and signal lock/closure verification is manual. Never treat a LIVE label as proof that a setup is profitable; check the feed timestamps and test before trading.
